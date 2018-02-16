@@ -133,7 +133,7 @@ def one_parameter_search(target, parameter_name, parameter_range, END, tip):
     S11_list = []
     dS11_list = []
     S11_linear = []
-    f = open("D:/one_parameter_search_output.txt","w")
+    f = open("./one_parameter_search_output.txt","w")
 
     for i in parameter_range:
         f.write(str(i)+",")
@@ -214,13 +214,13 @@ def test_stub_tuning():
     #Define Z-Match Config.
     END = Lumped_Element(0, 0, 0)
     Stub = Cable(20, 0.7, 4.5)
-    QWC = Cable(73, 0.7, 4.5)
+    QWC = Cable(73, 0.7, 4.2)
     tip = Lumped_Element(4, 1, 2)
     END.set_nexts(Stub)
     END.set_nexts(QWC)
     QWC.set_nexts(tip)
     #Search!
-    two_parameter_search(FREQ, "frequency", np.linspace(0.9, 1.1, 100), Stub, "length", np.linspace(4, 5, 100), END, tip)
+    two_parameter_search(FREQ, "frequency", np.linspace(0.7, 1.1, 100), Stub, "length", np.linspace(4, 7, 100), END, tip)
     Stub.set_length(4.57)
     one_parameter_search(FREQ, "frequency", np.linspace(0.9, 1.1, 200), END, tip)
 
